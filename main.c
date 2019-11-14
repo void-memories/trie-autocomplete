@@ -6,6 +6,7 @@
 #define ALPHABET_SIZE (26)  
 #define CHAR_TO_INDEX(c) ((int)c - (int)'a') 
 
+
 struct TrieNode 
 { 
 	struct TrieNode *children[ALPHABET_SIZE]; 
@@ -125,8 +126,29 @@ int printAutoSuggestions(struct TrieNode* root,const char query[])
 int main() 
 { 
 
-	FILE *fp,*fp2;char word[30];
-	fp=fopen("dict.txt","r");
+	FILE *fp,*fp2,*art,*sign;char word[30];
+    
+    
+    art=fopen("art.txt","r");
+    char read_string[500];
+    while(!feof(art))
+    {
+        fgets(read_string,500,art);
+        printf("%s",read_string);
+    }printf("\n");
+
+    sign=fopen("sign.txt","r");
+    while(!feof(sign))
+    {
+        fgets(read_string,500,sign);
+        printf("%s",read_string);
+    }
+    printf("\n");
+    printf("\n");
+
+	
+    
+    fp=fopen("dict.txt","r");
 	fp2=fopen("dict.txt","a");
 	struct TrieNode* root = getNode(); 
 
