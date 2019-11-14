@@ -108,7 +108,7 @@ int printAutoSuggestions(struct TrieNode* root,const char query[])
 	{ 
 		printf("\n \n");
 		puts(query); 
-		printf("*****MATCH FOUND*****\n\n");
+		printf("\x1b[42m *****MATCH FOUND***** \x1b[0m  \n");
 		return -1; 
 	} 
 
@@ -116,7 +116,7 @@ int printAutoSuggestions(struct TrieNode* root,const char query[])
 	{ 
 		char prefix[30]; 
 		strcpy(prefix,query);
-		printf("\n\nMATCH FOUND With AUTO COMPLETE:-\n");
+		printf("\x1b[42m MATCH FOUND With AUTO COMPLETE:- \x1b[0m  \n");
 		suggestionsRec(pCrawl, prefix); 
 		return 1; 
 	} 
@@ -127,6 +127,12 @@ int main()
 { 
 
 	FILE *fp,*fp2,*art,*sign;char word[30];
+
+    //************DESIGN**************
+    printf("\n");
+    printf("\n");
+    printf("\n");
+    printf("\n");
     
     
     art=fopen("art.txt","r");
@@ -134,15 +140,21 @@ int main()
     while(!feof(art))
     {
         fgets(read_string,500,art);
+        printf("                               ");
         printf("%s",read_string);
     }printf("\n");
+
+    
 
     sign=fopen("sign.txt","r");
     while(!feof(sign))
     {
         fgets(read_string,500,sign);
+        printf("                                                                               ");
         printf("%s",read_string);
     }
+    printf("\n");
+    printf("\n");
     printf("\n");
     printf("\n");
 
@@ -161,7 +173,9 @@ int main()
     int y=1,opt;
     while(y)
     {
-        printf("enter the word to be searched\n");
+        printf("\x1b[43m Enter The Word To Be Searched \x1b[0m  \n");
+
+        //printf("enter the word to be searched\n");
         scanf("%s",srch);
         int comp = printAutoSuggestions(root, srch); 
 
@@ -172,7 +186,7 @@ int main()
         else if (comp == 0) 
         {
             printf("\nNO STRINGS FOUND WITH THIS PREFIX\n\n");
-            printf("Do you want to add this word in dictionary\n\nIF YES , PRESS 1\nIF NO , PRESS 0\n\n");
+            printf("Do you want to add this word in dictionary\n\n\x1b[41m IF YES, PRESS 1 \x1b[0m \n\x1b[42m IF  NO, PRESS 0 \x1b[0m \n\n");
             scanf("%d",&opt);
             while(opt!=0 && opt!=1)
             {
@@ -187,7 +201,7 @@ int main()
 
         }
          
-        printf("\nWant to search more words\n\nIF YES , PRESS 1\nIF NO , PRESS 0\n\n");
+        printf("\nWant to search more words\n\n\x1b[41m IF YES, PRESS 1 \x1b[0m \n\x1b[42m IF  NO, PRESS 0 \x1b[0m \n\n\n");
         scanf("%d",&y);
         while(y!=0 && y!=1)
         {
